@@ -55,6 +55,7 @@
     "recognize": "bun run recognize/app.ts",
     "captions": "bun run captions/app.ts",
     "recognize_pixtral": "bun run recognize_pixtral/app.ts",
+    "poligon": "bun run poligon/app.ts",
     "prompts": "bun run prompts/app.ts",
     "summary": "bun run summary/app.ts",
     "narration": "bun run narration/app.ts",
