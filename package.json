@@ -34,6 +34,7 @@
     "rate": "bun promptfoo eval -c rate/rate.yaml",
     "segment": "bun run segment/crop.ts",
     "vision": "bun run vision/app.ts",
+    "poligon": "bun run poligon/app.ts",
     "prompts": "bun run prompts/app.ts",
     "summary": "bun run summary/app.ts",
     "audio": "bun run audio/app.ts",
