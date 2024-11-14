@@ -1,0 +1,8 @@
+{
+    "messages": [
+        { 
+            "role": "user", 
+            "content": "Answer the following questions about Andrzej Maj - a professor at a University.\n1. On which university and faculty Andrzej Maj lectures?\n2. On which street is the Andrzej Maj's faculty located?\nYou are allowed to use external sources while looking for the answers."
+        }
+    ]
+}

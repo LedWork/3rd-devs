@@ -8,3 +8,5 @@ node_modules/
 solutions/s01e03/data-answers.json
 poligon/
 bun.lockb
+tmp/
+*.m4a
