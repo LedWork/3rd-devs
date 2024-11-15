@@ -50,6 +50,7 @@
     "linear": "bun run linear/app.ts",
     "database": "bun run database/app.ts",
     "rate": "bun promptfoo eval -c rate/rate.yaml",
+    "recognize": "bun run recognize/app.ts",
     "segment": "bun run segment/crop.ts",
     "vision": "bun run vision/app.ts",
     "recognize": "bun run recognize/app.ts",
