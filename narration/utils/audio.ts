@@ -4,7 +4,39 @@ import { join } from "path";
 
 const execAsync = promisify(exec);
 
+async function checkFFmpegInstallation(): Promise<boolean> {
+  try {
+    await execAsync('ffmpeg -version');
+    await execAsync('ffprobe -version');
+    return true;
+  } catch (error) {
+    console.error(`
+ERROR: FFmpeg is not installed on your system.
+
+Please install FFmpeg using one of these methods:
+
+Ubuntu/Debian:
+  sudo apt update
+  sudo apt install ffmpeg
+
+macOS:
+  brew install ffmpeg
+
+Windows:
+  1. Download from https://ffmpeg.org/download.html
+  2. Add to system PATH
+
+After installing, restart your terminal/application.
+`);
+    return false;
+  }
+}
+
 export async function getAudioDuration(filePath: string): Promise<number> {
+  if (!await checkFFmpegInstallation()) {
+    throw new Error('FFmpeg is required but not installed');
+  }
+
   try {
     const cmd = `ffprobe -v error -show_entries format=duration -of csv=p=0 "${filePath}"`;
     const { stdout } = await execAsync(cmd);

@@ -85,10 +85,14 @@ async function generateNarration() {
       { role: "user", content: narrationPrompt },
       {
         role: "user",
-        content: `Make sound for the narration of Harry Potter and Hermiona Granger went to the Tree Broomsticks to spend some time. Here's there narration you should use:
-            ''The cobblestone streets of Hogsmeade glistened with fresh snow as Harry and Hermione made their way to The Three Broomsticks, their breaths visible in the crisp winter air. Inside, the warmth of the fireplace and the aroma of spiced mead enveloped them, creating a cozy sanctuary from the cold outside. As they sipped their drinks, the worries of exams and dark wizards momentarily faded, replaced by the simple joy of friendship and the quiet magic of a peaceful afternoon in the wizarding village.'
+        content: `Make sound for the narration of this Sherlock Holmes scene. Here's the narration you should use:
+            ''Sherlock Holmes's quick eye took in my occupation, and he shook his head with a smile as he noticed my questioning glances. "Beyond the obvious facts that he has at some time done manual labor, that he takes snuff, that he is a Freemason, that he has been in China, and that he has done a considerable amount of writing lately, I can deduce nothing else."
+
+            Mr. Jabez Wilson started up in his chair, with his forefinger upon the paper, but his eyes upon my companion.
+
+            "How, in the name of good-fortune, did you know all that, Mr. Holmes?" he asked. "How did you know, for example, that I did manual labor. It's as true as gospel, for I began as a ship's carpenter."'
         
-        Make sounds typical to the Harry Potter series music style    `,
+        Make sounds typical to the mystery and detective genre, with Victorian era atmosphere    `,
       },
     ],
   })) as ChatCompletion;

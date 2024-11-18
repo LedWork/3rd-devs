@@ -33,19 +33,40 @@ export class ElevenLabsService {
       modelId = "eleven_multilingual_v2"
     } = config;
 
-    try {
-      const audio = await this.client.generate({
-        voice,
-        text,
-        model_id: modelId
-      });
+    const MAX_RETRIES = 3;
+    let attempt = 0;
+    let lastError;
 
-      await writeFile(outputPath, audio);
-      return outputPath;
-    } catch (error) {
-      console.error("Error in ElevenLabs speech generation:", error);
-      throw error;
+    while (attempt < MAX_RETRIES) {
+      try {
+        // Add delay with exponential backoff if this isn't the first attempt
+        if (attempt > 0) {
+          const delayMs = Math.pow(2, attempt) * 1000; // 2s, 4s, 8s
+          await new Promise(resolve => setTimeout(resolve, delayMs));
+        }
+
+        const audio = await this.client.generate({
+          voice,
+          text,
+          model_id: modelId
+        });
+
+        await writeFile(outputPath, audio);
+        return outputPath;
+      } catch (error) {
+        lastError = error;
+        if (error?.statusCode === 429) {
+          attempt++;
+          console.log(`Rate limit hit, attempt ${attempt} of ${MAX_RETRIES}. Retrying in ${Math.pow(2, attempt)}s...`);
+          continue;
+        }
+        // If it's not a rate limit error, throw immediately
+        throw error;
+      }
     }
+
+    console.error("Max retries reached for ElevenLabs speech generation");
+    throw lastError;
   }
 
   async generateSoundEffect(config: {
