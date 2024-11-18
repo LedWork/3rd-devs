@@ -1,0 +1,135 @@
+description: "Testing the category analysis prompt"
+
+providers:
+  - "openai:gpt-4o-mini"
+  - "openai:gpt-4o"
+
+prompts:
+  - file://prompts.json
+
+defaultTest:
+  vars:
+    system_message: |
+          Analyze the text and determine if the data includes the following types of information:
+          1. PEOPLE (humans only): about detained individuals or traces of their presence, but only if they were observed or detained; otherwise, this does not fall under this category.
+          2. SOFTWARE (digital programs only): issues with software.
+          3. HARDWARE (physical objects only): physical problems with devices, hardware issues.
+          In your response, specify the category to which the information belongs.
+          You have three available categories: people, hardware, software. If the information does not match any of these categories, return NONE.
+          Answer only one word: people, hardware, software, or NONE.
+
+          Examples:
+          - "AI module was updated" → SOFTWARE (digital program was updated)
+          - "Security camera was replaced" → HARDWARE (physical object was replaced)
+          - "Found footprints in sector B" → PEOPLE (evidence of presence)
+          - "Searching for intruders" → NONE (action, not presence)
+          - "a boy named John delivers food" → NONE (just a description, without any evidence of presence)
+          - "a girl named Mary is well known in the area" → NONE (presence not mentioned)
+          - "a cat named Whiskers is playing with a ball" → NONE (not a person)
+          - "Judy was captured near the south gate" → PEOPLE (evidence of presence)
+          - "Robot arm was repaired" → HARDWARE (physical object was repaired)
+          - "Operating system restored" → SOFTWARE (digital program was restored)
+
+          Respond strictly with one word: PEOPLE, HARDWARE, SOFTWARE, or NONE.
+          If unsure or no clear evidence, answer NONE.
+
+tests:
+  - description: Basic software cases
+    assert:
+      - type: equals
+        value: SOFTWARE
+    vars:
+      message: "Updated the AI module version"
+  - description: Basic software cases
+    assert:
+      - type: equals
+        value: SOFTWARE
+    vars:
+      message: "System software was patched"
+  - description: Basic software cases
+    assert:
+      - type: equals
+        value: SOFTWARE
+    vars:
+      message: "Database backup restored"
+
+  - description: Basic people cases
+    assert:
+      - type: equals
+        value: PEOPLE
+    vars:
+      message: "Found John hiding in the basement"
+  - description: Basic people cases
+    assert:
+      - type: equals
+        value: PEOPLE
+    vars:
+      message: "Detained two intruders in sector B"
+  - description: Basic people cases
+    assert:
+      - type: equals
+        value: PEOPLE
+    vars:
+      message: "Fresh footprints discovered in restricted area"
+
+  - description: Should return NONE cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "Looking for suspicious activity"
+  - description: Should return NONE cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "John is a security guard"
+  - description: Should return NONE cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "The cat was sleeping"
+  - description: Should return NONE cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "Searching for hardware issues"
+  - description: Should return NONE cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "Planning to update software tomorrow"
+
+  - description: Edge cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "Robot detected movement but found nothing"
+  - description: Edge cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "Camera recorded someone but footage was corrupted"
+  - description: Edge cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "System crash during intruder detection"
+  - description: Edge cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "there is a guy named Peter, he is a nice guy"
+  - description: Edge cases
+    assert:
+      - type: equals
+        value: NONE
+    vars:
+      message: "a dog was barking at Anne"

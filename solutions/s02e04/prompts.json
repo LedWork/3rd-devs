@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": {{ system_message | dump }}
+  },
+  {
+    "role": "user",
+    "content": {{ message | dump }}
+  }
+]

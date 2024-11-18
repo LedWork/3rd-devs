@@ -10,3 +10,4 @@ poligon/
 bun.lockb
 tmp/
 *.m4a
+**/data/**
