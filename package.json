@@ -72,7 +72,8 @@
     "map:dev": "vite --config vite.config.map.ts",
     "camera:dev": "vite --config vite.config.camera.ts",
     "notes": "bun run notes/app.ts",
-    "mindmap": "bun run solutions/mindmap/app.ts"
+    "mindmap": "bun run solutions/mindmap/app.ts",
+    "s03e01": "bun run solutions/s03e01/app.ts"
   },
   "peerDependencies": {
     "typescript": "^5.6.3"
