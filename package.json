@@ -71,7 +71,8 @@
     "audio:dev": "vite --config vite.config.audio.ts",
     "map:dev": "vite --config vite.config.map.ts",
     "camera:dev": "vite --config vite.config.camera.ts",
-    "notes": "bun run notes/app.ts"
+    "notes": "bun run notes/app.ts",
+    "mindmap": "bun run solutions/mindmap/app.ts"
   },
   "peerDependencies": {
     "typescript": "^5.6.3"
@@ -124,6 +125,7 @@
     "googleapis": "^144.0.0",
     "gray-matter": "^4.0.3",
     "groq-sdk": "^0.7.0",
+    "html-to-markdown": "^1.0.0",
     "http-server": "^14.1.1",
     "js-yaml": "^4.1.0",
     "jsdom": "^25.0.1",
