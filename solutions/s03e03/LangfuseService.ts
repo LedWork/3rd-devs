@@ -76,6 +76,10 @@ export class LangfuseService {
     await this.langfuse.flushAsync();
   }
 
+  async flushAsync(): Promise<void> {
+    await this.langfuse.flushAsync();
+  }
+
   async shutdownAsync(): Promise<void> {
     await this.langfuse.shutdownAsync();
   }
