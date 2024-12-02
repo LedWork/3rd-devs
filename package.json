@@ -42,6 +42,7 @@
     "max_tokens": "bun run max_tokens/app.ts",
     "constitution": "bun run constitution/app.ts",
     "memory": "bun run memory/app.ts",
+    "meta": "bun run solutions/meta/app.ts",
     "use_search": "bun promptfoo eval -c use_search/use_search.yaml",
     "pick_domains": "bun promptfoo eval -c pick_domains/pick_domains.yaml",
     "extract_keywords": "bun promptfoo eval -c extract_keywords/extract_keywords.yaml",
