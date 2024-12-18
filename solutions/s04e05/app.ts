@@ -172,6 +172,11 @@ async function submitAnswers(apiKey: string, answers: Record<string, string>): P
   return await response.json();
 }
 
+// TODO:
+// - obrazki, ktore sa w pdfie, nie sa odczytywane
+// - dodac tekst do bazy wektorowej wraz z contextem oraz obrazkami
+// - przetestowac llamaindex
+
 async function main() {
   const apiKey = process.env.AI_DEVS_API_KEY;
   if (!apiKey) {
